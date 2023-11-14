@@ -20,7 +20,7 @@ $this->setFrameMode(true);
 
 <h1><?= $arResult['SECTION_DATA']['NAME']; ?></h1>
 
-<?php if (!empty($arResult['SECTION_DATA']['CHILDS'])): ?>
+<?php if (!empty($arResult['SECTION_DATA']['CHILDS'])): ?> <!-- подразделы текущего раздела -->
     <ul class="blog-subsections">
         <?php foreach ($arResult['SECTION_DATA']['CHILDS'] as $arSection): ?>
             <li><a href="<?= $arSection['SECTION_PAGE_URL'] ?>"><?= $arSection['NAME'] ?></a></li>
