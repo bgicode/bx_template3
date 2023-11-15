@@ -72,24 +72,8 @@ $ElementID = $APPLICATION->IncludeComponent(
 	$component,
 	['HIDE_ICONS' => 'Y']
 );?>
-<p><a href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"]?>"><?=GetMessage("T_NEWS_DETAIL_BACK")?></a></p>
-<?if($arParams["USE_RATING"]=="Y" && $ElementID):?>
-<?$APPLICATION->IncludeComponent(
-	"bitrix:iblock.vote",
-	"",
-	[
-		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-		"ELEMENT_ID" => $ElementID,
-		"MAX_VOTE" => $arParams["MAX_VOTE"],
-		"VOTE_NAMES" => $arParams["VOTE_NAMES"],
-		"CACHE_TYPE" => $arParams["CACHE_TYPE"],
-		"CACHE_TIME" => $arParams["CACHE_TIME"],
-	],
-	$component,
-	['HIDE_ICONS' => 'Y']
-);?>
-<?endif?>
+
+
 <?if($arParams["USE_CATEGORIES"]=="Y" && $ElementID):
 	global $arCategoryFilter;
 	$obCache = new CPHPCache;
@@ -150,27 +134,3 @@ $ElementID = $APPLICATION->IncludeComponent(
 		<?endforeach?>
 	<?endif?>
 <?endif?>
-<?if($arParams["USE_REVIEW"]=="Y" && IsModuleInstalled("forum") && $ElementID):?>
-<hr />
-<?$APPLICATION->IncludeComponent(
-	"bitrix:forum.topic.reviews",
-	"",
-	[
-		"CACHE_TYPE" => $arParams["CACHE_TYPE"],
-		"CACHE_TIME" => $arParams["CACHE_TIME"],
-		"MESSAGES_PER_PAGE" => $arParams["MESSAGES_PER_PAGE"],
-		"USE_CAPTCHA" => $arParams["USE_CAPTCHA"],
-		"PATH_TO_SMILE" => $arParams["PATH_TO_SMILE"],
-		"FORUM_ID" => $arParams["FORUM_ID"],
-		"URL_TEMPLATES_READ" => $arParams["URL_TEMPLATES_READ"],
-		"SHOW_LINK_TO_FORUM" => $arParams["SHOW_LINK_TO_FORUM"],
-		"DATE_TIME_FORMAT" => $arParams["DETAIL_ACTIVE_DATE_FORMAT"],
-		"ELEMENT_ID" => $ElementID,
-		"AJAX_POST" => $arParams["REVIEW_AJAX_POST"],
-		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-		"URL_TEMPLATES_DETAIL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["detail"],
-	],
-	$component,
-	['HIDE_ICONS' => 'Y']
-);?>
-<?endif;
